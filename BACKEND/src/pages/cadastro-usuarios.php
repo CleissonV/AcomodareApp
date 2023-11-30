@@ -62,17 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } elseif (isset($_POST['btn-outra-acao'])) {
     $id = $_POST["id"];
     $username = $_POST["username"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
     $acao = $_POST["acao"];
 
     if ($acao === "insert") {
         // Ação de inserção
-        $sql = "INSERT INTO usuarios (id, username, password)
-                VALUES ('$id', '$username', '$password')";
+        $sql = "INSERT INTO usuarios (id, username, password,email)
+                VALUES ('$id', '$username', '$password', '$email')";
     } elseif ($acao === "update") {
         // Ação de atualização
         $sql = "UPDATE usuarios
-                SET username='$username', password='$password'
+                SET username='$username', password='$password',email='$email'
                 WHERE id='$id'";
     }
 
@@ -194,6 +195,7 @@ include 'header.php';
                         <tr>
                           <th>Código</th>
                           <th>Login</th>
+                          <th>E-mail</th>
                           <th>Senha</th>
                           <th>Ações</th>
                         </tr>
@@ -205,6 +207,7 @@ include 'header.php';
                           <tr class="linha">
                             <td><?= $usuario['id']; ?></td>
                             <td><?= $usuario['username']; ?></td>
+                            <td><?= $usuario['email']; ?></td>
                             <td><?= $usuario['password']; ?></td>
                             <td class="td_segura">
                               <button class="btn btn__acoes editar-linha editar-linha-usuarios" aria-label="Editar">Editar</button>
@@ -220,7 +223,7 @@ include 'header.php';
               </div><!-- ./container-->
             </div>
             <div class="tab-pane fade" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
-              <form class="form__cadastro" action="" method="post">
+              <form class="form__cadastro" action="" method="post" autocomplete="off">
                 <input type="hidden" id="acao" name="acao" value="insert">
                 <div class="group">
                   <label for="id">Código</label>
@@ -228,11 +231,15 @@ include 'header.php';
                 </div>
                 <div class="group">
                   <label for="username">Login</label>
-                  <input type="text" id="username" name="username" required>
+                  <input type="text" id="username" name="username" autocomplete="off" required>
+                </div>
+                <div class="group">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" autocomplete="off" required>
                 </div>
                 <div class="group">
                   <label for="password">Senha</label>
-                  <input type="password" id="password" name="password" required>
+                  <input type="password" id="password" name="password" autocomplete="off" required>
                 </div>
                 <div class="box__btns">
                   <button class="btn btn__form" type="submit" name="btn-outra-acao" id="submit-btn" aria-label="Salvar">Salvar</button>

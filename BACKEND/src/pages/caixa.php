@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Adiciona condição de pesquisa se o campo de pesquisa estiver preenchido
     if (!empty($buscarListagem)) {
-        $sql .= " WHERE descricao LIKE '%$buscarListagem%'";
+        $sql .= " WHERE pessoa_nome LIKE '%$buscarListagem%'";
     }
     
     $result = $conn->query($sql);
@@ -61,10 +61,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   } elseif (isset($_POST['btn-outra-acao'])) {
     $id = $_POST["id"];
+    $pessoa = $_POST['pessoa'];
+    $quantidadeProdutos = $_POST['quantidade'];
     $produto = $_POST['produto'];
     $agendamento = $_POST['agendamento'];
-    $quantidadeProdutos = $_POST['quantidade'];
     $acao = $_POST["acao"];
+
+    // Divide o valor selecionado para obter o código e o nome
+    list($pessoaId, $pessoaNome) = explode("|", $pessoa);
 
     // Divide o valor selecionado para obter o código e o nome
     list($produtoId, $produtoNome) = explode("|", $produto);
@@ -72,6 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Divide o valor selecionado para obter o código e o nome
     list($agendamentoId, $agendamentoNome) = explode("|", $agendamento);
 
+    // Remova espaços em branco extras
+    $pessoaNome = trim($pessoaNome);
     // Remova espaços em branco extras
     $produtoNome = trim($produtoNome);
 
@@ -93,9 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar se há estoque suficiente
     if ($quantidadeAtual < $quantidadeProdutos) {
-        echo "Estoque insuficiente.";
-        exit();
-    }
+      echo '<script>alert("Estoque insuficiente.");</script>';
+      echo '<script>window.location.href = "caixa";</script>';
+      exit();
+    } 
 
     // Inicializar o valor do agendamento
     $valorAgendamento = 0;
@@ -117,8 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precoFinal = $quantidadeProdutos * $valorProduto + $valorAgendamento;
 
     // Inserir na tabela de vendas com a data atual
-    $sqlInserirVenda = "INSERT INTO vendas (produto_id, agendamento_id, quantidade_produtos, preco_final, data_venda, nome_produto, descricao_agendamento)
-                        VALUES ('$produtoId', '$agendamentoId', '$quantidadeProdutos', '$precoFinal', NOW(), '$produtoNome', '$agendamentoNome')";
+    $sqlInserirVenda = "INSERT INTO vendas (produto_id, agendamento_id, quantidade_produtos, preco_final, data_venda, nome_produto, descricao_agendamento,pessoa_nome,pessoa_id)
+                        VALUES ('$produtoId', '$agendamentoId', '$quantidadeProdutos', '$precoFinal', NOW(), '$produtoNome', '$agendamentoNome', '$pessoaNome', '$pessoaId')";
 
     if ($conn->query($sqlInserirVenda) !== TRUE) {
         echo "Erro ao executar a consulta de inserção de venda: " . $conn->error;
@@ -195,8 +202,8 @@ include 'header.php';
         ?>
       </ul><!-- ./menu__lateral-->
       <div class="conteudo__principal">
-        <h2 class="title">Produtos
-          <img src="assets/images/produtos_selecionado.png" alt="Animais" width="24" height="24">
+        <h2 class="title">Caixa
+          <img src="assets/images/caixa_selecionado.png" alt="Animais" width="24" height="24">
         </h2>
         <div class="container container__principal">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -214,7 +221,7 @@ include 'header.php';
                   <div class="col-lg-12">
                   <form method="post">
                       <div class="buscar__listagem">
-                          <input type="text" id="buscar-listagem" name="buscar-listagem" placeholder="Buscar por data da venda">
+                          <input type="text" id="buscar-listagem" name="buscar-listagem" placeholder="Buscar por comprador">
                           <button type="submit" name="btn-pesquisar" class="btn btn__pesquisar" aria-label="Pesquisar">Pesquisar</button>
                       </div><!-- ./buscar__listagem-->
                   </form>
@@ -246,9 +253,10 @@ include 'header.php';
                       <thead>
                         <tr>
                             <th>Código</th>
+                            <th>Comprador</th>
+                            <th>Quantidade Vendidos</th>
                             <th>Produto</th>
                             <th>Agendamento</th>
-                            <th>Quantidade Vendidos</th>
                             <th>Preço Final</th>
                             <th>Data de Venda</th>
                             <th>Ações</th>
@@ -256,14 +264,15 @@ include 'header.php';
                       </thead>
                       <tbody>
                         <?php foreach ($vendas as $venda) : ?>
-                          <?php if (!empty($buscarListagem) && stripos($venda['data_venda'], $buscarListagem) === false) continue; ?>
+                          <?php if (!empty($buscarListagem) && stripos($venda['pessoa_nome'], $buscarListagem) === false) continue; ?>
                           <tr class="linha">
                               <td><?= $venda['id']; ?></td>
+                              <td><?= $venda['pessoa_nome']; ?></td>
+                              <td><?= $venda['quantidade_produtos']; ?></td>
                               <td><?= $venda['nome_produto']; ?></td>
                               <td><?= $venda['descricao_agendamento']; ?></td>
-                              <td><?= $venda['quantidade_produtos']; ?></td>
-                              <td><?= $venda['preco_final']; ?></td>
-                              <td><?= $venda['data_venda']; ?></td>
+                              <td>R$<?= number_format($venda['preco_final'], 2, ',', '.'); ?></td>
+                              <td><?= date('d/m/Y', strtotime($venda['data_venda'])); ?></td>
                               <td class="td_segura">
                                 <a href="?acao=excluir&id=<?= $venda['id']; ?>" class="btn btn__acoes" aria-label="Excluir" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
                               </td>
@@ -285,10 +294,40 @@ include 'header.php';
                 </div>
                 <div class="group__form">
                   <div class="group">
+                    <label for="pessoa">Pessoa</label>
+                    <?php
+                      // Consulta SQL para obter todas as pessoas
+                      $sql = "SELECT codigo, nome FROM pessoas";
+                      $result = $conn->query($sql);
+
+                      // Array para armazenar as pessoas
+                      $pessoas = [];
+
+                      // Verifica se a consulta foi bem-sucedida
+                      if ($result) {
+                          while ($row = $result->fetch_assoc()) {
+                              $pessoas[] = $row;
+                          }
+                      }
+                    ?>
+                    <select id="pessoa" name="pessoa" required>
+                      <option value="">Selecione a pessoa</option>
+                      <?php foreach ($pessoas as $pessoa) : ?>
+                          <option value="<?= $pessoa['codigo'] . '|' . $pessoa['nome']; ?>"><?= $pessoa['nome']; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+
+                  <div class="group">
+                    <label for="quantidade">Quantidade de Produtos</label>
+                    <input type="text" id="quantidade" name="quantidade" required>
+                  </div><!-- ./group-->
+
+                  <div class="group">
                     <label for="produto">Produto</label>
                     <?php
                       // Consulta SQL para obter todas as produtos
-                      $sql = "SELECT id, descricao FROM produtos";
+                      $sql = "SELECT id, descricao FROM produtos WHERE quantidade >= 1";
                       $result = $conn->query($sql);
 
                       // Array para armazenar as produtos
@@ -308,7 +347,8 @@ include 'header.php';
                       <?php endforeach; ?>
                     </select>
                   </div>
-
+                </div><!-- ./group__form-->
+                <div class="group__form">
                   <div class="group">
                     <label for="agendamento">Agendamento</label>
                     <?php
@@ -333,12 +373,7 @@ include 'header.php';
                       <?php endforeach; ?>
                     </select>
                   </div>
-
-                  <div class="group">
-                    <label for="quantidade">Quantidade de Produtos</label>
-                    <input type="text" id="quantidade" name="quantidade" required>
-                  </div><!-- ./group-->
-                </div><!-- ./group__form-->
+                </div>
                 <div class="box__btns">
                     <button class="btn btn__form" type="submit" name="btn-outra-acao" aria-label="Lançar Venda">Lançar Venda</button>
                     <button class="btn btn__form" type="button" id="cancelar" aria-label="Voltar">Voltar</button>

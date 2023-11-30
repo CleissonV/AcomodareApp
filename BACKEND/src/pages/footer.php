@@ -52,7 +52,7 @@
         var nome = $(this).closest("tr").find("td:eq(1)").text();
         var cpf = $(this).closest("tr").find("td:eq(2)").text();
         var genero = $(this).closest("tr").find("td:eq(3)").text();
-        var data_nascimento = $(this).closest("tr").find("td:eq(4)").text();
+        var data_nascimento_td = $(this).closest("tr").find("td:eq(4)").text();
         var telefone = $(this).closest("tr").find("td:eq(5)").text();
         var endereco = $(this).closest("tr").find("td:eq(6)").text();
         var bairro = $(this).closest("tr").find("td:eq(7)").text();
@@ -65,7 +65,11 @@
         $("#nome").val(nome);
         $("#cpf").val(cpf);
         $("#genero").val(genero);
-        $("#data_nascimento").val(data_nascimento);
+
+        // Converte a data de formato texto para o formato de entrada de data
+        var data_nascimento_formatada = formatDateForInput(data_nascimento_td);
+        $("#data_nascimento").val(data_nascimento_formatada);
+
         $("#telefone").val(telefone);
         $("#endereco").val(endereco);
         $("#bairro").val(bairro);
@@ -77,24 +81,33 @@
         $('#formulario-tab').tab('show');
 
         $("#submit-btn").click(function() {
-          // Determina se a ação é uma inserção ou uma atualização
-          var action = ($("#codigo").val() === "") ? "insert" : "update";
+            // Determina se a ação é uma inserção ou uma atualização
+            var action = ($("#codigo").val() === "") ? "insert" : "update";
 
-          // Modifica o atributo data-action do botão de submit
-          $(this).attr("data-action", action);
+            // Modifica o atributo data-action do botão de submit
+            $(this).attr("data-action", action);
 
             // Adiciona um campo oculto ao formulário para enviar a ação
-          $("<input>").attr({
-              type: "hidden",
-              id: "acao",
-              name: "acao",
-              value: action
-          }).appendTo("form");
+            $("<input>").attr({
+                type: "hidden",
+                id: "acao",
+                name: "acao",
+                value: action
+            }).appendTo("form");
 
-          // Submete o formulário
-          $("form").submit();
+            // Submete o formulário
+            $("form").submit();
         });
-      });
+    });
+
+      // Função para converter a data para o formato de entrada de data
+      function formatDateForInput(date) {
+          var parts = date.split("/");
+          if (parts.length === 3) {
+              return parts[2] + "-" + parts[1] + "-" + parts[0];
+          }
+          return date; // Retornar a data sem alterações se não estiver no formato esperado
+      }
 
       $(".editar-linha-animais").click(function() {
         // Obtém os dados da linha clicada
@@ -111,7 +124,10 @@
         // Preenche o formulário com os dados obtidos
         $("#codigo").val(codigo);
         $("#nome").val(nome);
-        $("#proprietario").val(proprietario);
+        // Remove a seleção atual antes de definir o novo valor
+        $("#proprietario option").removeAttr("selected");
+        // Define a opção correta como selecionada com base no texto
+        $("#proprietario option:contains('" + proprietario + "')").prop("selected", true);
         $("#raca").val(raca);
         $("#cor").val(cor);
         $("#pelagem").val(pelagem);

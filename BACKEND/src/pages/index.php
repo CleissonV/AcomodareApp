@@ -35,6 +35,9 @@ if (isset($_GET['page'])) {
       case 'cadastro-quartos':
         include 'pages/cadastro-quartos.php';
         break;
+        case 'esqueci-a-senha':
+          include 'pages/esqueci-a-senha.php';
+          break;
       default:
           include 'pages/not_found.php';
           break;

@@ -251,30 +251,49 @@ include 'header.php';
                   <label for="nome">Nome</label>
                   <input type="text" id="nome" name="nome">
                 </div>
-                <div class="group">
-                  <label for="proprietario">Proprietário</label>
-                  <?php
-                    // Consulta SQL para obter todas as pessoas
-                    $sql = "SELECT codigo, nome FROM pessoas";
-                    $result = $conn->query($sql);
+                <?php
+                // Consulta SQL para obter todas as pessoas
+                $sqlPessoas = "SELECT codigo, nome FROM pessoas";
+                $resultPessoas = $conn->query($sqlPessoas);
 
-                    // Array para armazenar as pessoas
-                    $pessoas = [];
+                // Array para armazenar as pessoas
+                $pessoas = [];
 
-                    // Verifica se a consulta foi bem-sucedida
-                    if ($result) {
-                        while ($row = $result->fetch_assoc()) {
-                            $pessoas[] = $row;
-                        }
+                // Verifica se a consulta foi bem-sucedida
+                if ($resultPessoas) {
+                    while ($rowPessoa = $resultPessoas->fetch_assoc()) {
+                        $pessoas[] = $rowPessoa;
                     }
-                  ?>
-                  <select id="proprietario" name="proprietario">
-                    <option value="">Selecione o proprietário</option>
-                    <?php foreach ($pessoas as $pessoa) : ?>
-                        <option value="<?= $pessoa['codigo'] . '|' . $pessoa['nome']; ?>"><?= $pessoa['nome']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
+                }
+
+                // Se estiver editando, obter informações do animal
+                if ($_GET['acao'] === 'editar' && isset($_GET['id'])) {
+                    $id_animal = $_GET['id'];
+                    $sqlAnimal = "SELECT codigo, nome, proprietario_codigo FROM animais WHERE id = $id_animal";
+                    $resultAnimal = $conn->query($sqlAnimal);
+
+                    // Verifica se a consulta do animal foi bem-sucedida
+                    if ($resultAnimal) {
+                        $rowAnimal = $resultAnimal->fetch_assoc();
+                    }
+                }
+                ?>
+                <div class="group">
+                    <label for="proprietario">Proprietário</label>
+                    <select id="proprietario" name="proprietario">
+                        <option value="">Selecione o proprietário</option>
+                        <?php foreach ($pessoas as $pessoa) : ?>
+                            <?php
+                            // Verifica se este é o proprietário atual do animal
+                            $selected = ($pessoa['codigo'] == $rowAnimal['proprietario_codigo']) ? 'selected' : '';
+                            ?>
+                            <option value="<?= $pessoa['codigo'] . '|' . $pessoa['nome']; ?>" <?= $selected; ?>>
+                                <?= $pessoa['nome']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+
                 <div class="group__form">
                   <div class="group">
                     <label for="raca">Raça</label>

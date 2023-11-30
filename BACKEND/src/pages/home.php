@@ -109,7 +109,7 @@ include 'header.php';
                   die("Erro na conexão: " . $conn->connect_error);
               }
               // Consulta SQL para obter a lista de agendamentos
-              $result = $conn->query("SELECT * FROM agendamentos ORDER BY data ASC");
+              $result = $conn->query("SELECT * FROM agendamentos WHERE numero_quarto = 0 ORDER BY data ASC");
               
               // Array para armazenar os agendamentos
               $agendamentos = [];
@@ -123,14 +123,66 @@ include 'header.php';
             <div class="segura__agendamentos">
               <?php foreach ($agendamentos as $agendamento) : ?>
                 <div class="card__agendamento">
-                  <div class="data">Data do Agendamento: <?= date('d/m/Y', strtotime($agendamento['data'])); ?></div>
-                  <div class="nome_animal">Nome do animal: <?= $agendamento['animal']; ?></div>
-                  <div clas="quarto">Quarto: <?= $agendamento['numero_quarto']; ?></div>
-                  <?php if($agendamento['valor'] != '') { ?>
-                    <div class="valor">Valor: R$<?= $agendamento['valor']; ?></div>
-                  <?php } ?>
-                  <div class="observacoes__agendamento">Obs: <?= $agendamento['observacoes']; ?></div>
-                  <a href="?acao=excluir&id=<?= $agendamento['id']; ?>" class="btn btn__acoes" aria-label="Concluir" onclick="return confirm('Tem certeza que deseja concluir e fechar este agendamento?')">Concluir</a>
+                    <div class="data">Data do Agendamento: <?= date('d/m/Y', strtotime($agendamento['data'])); ?></div>
+                    <?php if (!empty($agendamento['animal'])) : ?>
+                        <div class="nome_animal">Nome do animal: <?= $agendamento['animal']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['numero_quarto'])) : ?>
+                        <div class="quarto">Quarto: <?= $agendamento['numero_quarto']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['valor'])) : ?>
+                        <div class="valor">Valor: R$<?= $agendamento['valor']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['observacoes'])) : ?>
+                        <div class="observacoes__agendamento">Obs: <?= $agendamento['observacoes']; ?></div>
+                    <?php endif; ?>
+                    <a href="?acao=excluir&id=<?= $agendamento['id']; ?>" class="btn btn__acoes" aria-label="Concluir" onclick="return confirm('Tem certeza que deseja concluir e fechar este agendamento?')">Concluir</a>
+                </div>
+              <?php endforeach; ?>
+            </div>
+
+            <h3 style="margin-top:40px;" class="subtitulo">Agendamentos de quartos</h3>
+            
+            <?php
+              $servername = "localhost";
+              $username = "brcriacaodesites_acomodare";
+              $password = "9DPib3cGUji9nk";
+              $dbname = "brcriacaodesites_acomodare";
+              
+              $conn = new mysqli($servername, $username, $password, $dbname);
+              
+              if ($conn->connect_error) {
+                  die("Erro na conexão: " . $conn->connect_error);
+              }
+              // Consulta SQL para obter a lista de agendamentos
+              $result = $conn->query("SELECT * FROM agendamentos WHERE numero_quarto >= 1 ORDER BY data ASC");
+              
+              // Array para armazenar os agendamentos
+              $agendamentos = [];
+
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $agendamentos[] = $row;
+                }
+              }
+            ?>
+            <div class="segura__agendamentos">
+              <?php foreach ($agendamentos as $agendamento) : ?>
+                <div class="card__agendamento">
+                    <div class="data">Data do Agendamento: <?= date('d/m/Y', strtotime($agendamento['data'])); ?></div>
+                    <?php if (!empty($agendamento['animal'])) : ?>
+                        <div class="nome_animal">Nome do animal: <?= $agendamento['animal']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['numero_quarto'])) : ?>
+                        <div class="quarto">Quarto: <?= $agendamento['numero_quarto']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['valor'])) : ?>
+                        <div class="valor">Valor: R$<?= $agendamento['valor']; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($agendamento['observacoes'])) : ?>
+                        <div class="observacoes__agendamento">Obs: <?= $agendamento['observacoes']; ?></div>
+                    <?php endif; ?>
+                    <a href="?acao=excluir&id=<?= $agendamento['id']; ?>" class="btn btn__acoes" aria-label="Concluir" onclick="return confirm('Tem certeza que deseja concluir e fechar este agendamento?')">Concluir</a>
                 </div>
               <?php endforeach; ?>
             </div>

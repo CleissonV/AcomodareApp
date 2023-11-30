@@ -213,7 +213,7 @@ include 'header.php';
                               <td><?= $produto['codigo_ean']; ?></td>
                               <td><?= $produto['tipo_un']; ?></td>
                               <td><?= $produto['quantidade']; ?></td>
-                              <td><?= $produto['preco']; ?></td>
+                              <td>R$<?= number_format($produto['preco'], 2, ',', '.'); ?></td>
                               <td class="td_segura">
                                 <button class="btn btn__acoes editar-linha" aria-label="Editar">Editar</button>
                                 <a href="?acao=excluir&id=<?= $produto['id']; ?>" class="btn btn__acoes" aria-label="Excluir" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>

@@ -34,29 +34,33 @@ if ($_GET['acao'] === 'excluir' && isset($_GET['id'])) {
   }
 }
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['btn-pesquisar'])) {
     // Verifica se há um valor no campo de pesquisa
     $buscarListagem = isset($_POST['buscar-listagem']) ? $_POST['buscar-listagem'] : '';
 
-    // Consulta SQL para obter a lista de agendamentos
-    $sql = "SELECT id, data, observacoes FROM agendamentos";
+    // Consulta SQL para obter a lista de produtos
+    $sql = "SELECT id, data, observacoes, valor, animal, numero_quarto FROM agendamentos";
 
     // Adiciona condição de pesquisa se o campo de pesquisa estiver preenchido
     if (!empty($buscarListagem)) {
-        $sql .= " WHERE username LIKE '%$buscarListagem%'";
+        $sql .= " WHERE animal LIKE '%$buscarListagem%'";
     }
     
     $result = $conn->query($sql);
 
-    // Array para armazenar os agendamentos
-    $agendamentos = [];
+    // Array para armazenar os produtos
+    $produtos = [];
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $agendamentos[] = $row;
+            $produtos[] = $row;
         }
     }
+
+
   } elseif (isset($_POST['btn-outra-acao'])) {
     $id = $_POST["id"];
     $data = $_POST["data"];
@@ -189,7 +193,7 @@ include 'header.php';
                   <div class="col-lg-12">
                   <form method="post">
                       <div class="buscar__listagem">
-                          <input type="text" id="buscar-listagem" name="buscar-listagem" placeholder="Buscar por data">
+                          <input type="text" id="buscar-listagem" name="buscar-listagem" placeholder="Buscar por animal">
                           <button type="submit" name="btn-pesquisar" class="btn btn__pesquisar" aria-label="Pesquisar">Pesquisar</button>
                       </div><!-- ./buscar__listagem-->
                   </form>
@@ -232,13 +236,13 @@ include 'header.php';
                       <tbody>
                         
                         <?php foreach ($agendamentos as $agendamento) : ?>
-                          <?php if (!empty($buscarListagem) && stripos($agendamento['data'], $buscarListagem) === false) continue; ?>
+                          <?php if (!empty($buscarListagem) && stripos($agendamento['animal'], $buscarListagem) === false) continue; ?>
                           <tr class="linha">
                             <td><?= $agendamento['id']; ?></td>
                             <td><?= date('d/m/Y', strtotime($agendamento['data'])); ?></td>
                             <td><?= $agendamento['animal']; ?></td>
                             <td><?= $agendamento['numero_quarto']; ?></td>
-                            <td><?= $agendamento['valor']; ?></td>
+                            <td>R$<?= number_format($agendamento['valor'], 2, ',', '.'); ?></td>
                             <td><?= $agendamento['observacoes']; ?></td>
                             <td class="td_segura">
                               <button class="btn btn__acoes editar-linha editar-linha-agendamentos" aria-label="Editar">Editar</button>
@@ -262,7 +266,7 @@ include 'header.php';
                 </div>
                 <div class="group">
                   <label for="data">Data de Agendamento</label>
-                  <input type="date" id="data" name="data">
+                  <input type="date" id="data" name="data" required>
                 </div>
                 <div class="group">
                   <label for="animal">Animal</label>
