@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<title>Acomodare</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Descrição do projeto Acomodare">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no"><!-- manifest-->
+	<link rel="manifest" href="assets/application/manifest.json">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"><!-- add to home screen (ios)-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Acomodare">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#1E1E1E">
+	<link rel="apple-touch-icon" href="assets/application/icon-152x152.png"><!-- add to home screen (chrome)-->
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Acomodare">
+	<meta name="theme-color" content="#1E1E1E"><!-- Tile icon for Win8 (144x144 + tile color)-->
+	<meta name="msapplication-TileImage" content="assets/application/icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#1E1E1E"><!-- ICONS-->
+	<link rel="icon" sizes="72x72" type="image/png" href="assets/application/icon-72x72.png">
+	<link rel="icon" sizes="96x96" type="image/png" href="assets/application/icon-96x96.png">
+	<link rel="icon" sizes="128x128" type="image/png" href="assets/application/icon-128x128.png">
+	<link rel="icon" sizes="144x144" type="image/png" href="assets/application/icon-144x144.png">
+	<link rel="icon" sizes="152x152" type="image/png" href="assets/application/icon-152x152.png">
+	<link rel="icon" sizes="192x192" type="image/png" href="assets/application/icon-192x192.png">
+	<link rel="icon" sizes="384x384" type="image/png" href="assets/application/icon-384x384.png">
+	<link rel="icon" sizes="512x512" type="image/png" href="assets/application/icon-512x512.png"><!-- PRELOADING-->
+	<link rel="preload" as="script" href="assets/js/jquery.min.js">
+	<link rel="preload" as="script" href="assets/js/bootstrap.min.js">
+	<link rel="preload" as="script" href="assets/js/scripts.min.js">
+	<link rel="preload" as="style" href="assets/css/estilos.css"><!-- CSS-->
+	<link rel="stylesheet" href="assets/css/estilos.css">
+</head><!-- colocar no attr [data-path] a url do site para poder fazer o lazyload de scripts sem problemas de rota.-->
+
+<body data-path="http://localhost:9000">
+	<noscript><style>.noscript{position: sticky;top:0;z-index: 1200;background: #D32F2F;color: #FFF;padding: 20px;text-align: center}</style>
+		<div class="noscript">
+			<p class="h1">(&gt;_&lt;) Ops....</p>
+			<p>Seu navegador está com os scripts desabilitados! Para ter uma melhor experiencia com o nosso site, por favor, habiliete-os.</p>
+		</div>
+	</noscript><!--  [if lt IE 10]><style>.ie-message{position: sticky;top: 0;z-index: 1200;background: #FF9800;color: #FFF}</style><div class="ie-message"><p class="h1"><em>Atenção!!!</em></p><p>Seu navegador está desatualizado! Para ter uma melhor experiência com o nosso site, por favor atualize-o para a última versão do Microsoft Edge.</p></div><![endif]-->
+	<div id="app"><sprite-svg></sprite-svg>
+		<header class="topo">
+			<div class="mobile__controls">
+				<div class="logo">
+					<h1 class="titulo__logo">Acomodare</h1>
+				</div><!-- ./logo-->
+				<button class="btn" type="button" aria-expanded="false" aria-label="Mostrar menu" id="menuToggler"><i class="fas fa-bars"></i></button><!-- ./menuToggler-->
+			</div><!-- ./mobile__controls-->
+			<nav class="main__topo">
+				<div class="logo">
+					<h1 class="titulo__logo">Acomodare</h1>
+				</div><!-- ./logo-->
+				<ul class="menu">
+					<li>
+						<a href="index.html" aria-label="Home">Home
+							<img src="assets/images/home_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="cadastro-animais.html" aria-label="Animais">Animais
+							<img src="assets/images/pets_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="agenda.html" aria-label="Agenda">Agenda
+							<img src="assets/images/agenda_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="caixa.html" aria-label="Caixa">Caixa
+							<img src="assets/images/caixa_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="cadastro-pessoas.html" aria-label="Pessoas">Pessoas
+							<img src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="cadastro-produtos.html" aria-label="Produtos">Produtos
+							<img src="assets/images/produtos_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+					<li>
+						<a href="definicoes.html" aria-label="Definições">Definições
+							<img src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24">
+						</a>
+					</li>
+				</ul><!-- ./menu-->
+			</nav><!-- ./main__topo-->
+			<div class="backdrop"></div>
+		</header><!-- ./topo-->
+		<template>
+			<main class="wrapper">
+				<section class="principal">
+					<ul class="menu__lateral">
+						<li>
+							<a href="index.html" aria-label="Home">Home
+								<img src="assets/images/home_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="cadastro-animais.html" aria-label="Animais">Animais
+								<img src="assets/images/pets_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="agenda.html" aria-label="Agenda">Agenda
+								<img src="assets/images/agenda_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="caixa.html" aria-label="Caixa">Caixa
+								<img src="assets/images/caixa_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="cadastro-pessoas.html" aria-label="Pessoas">Pessoas
+								<img src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="cadastro-produtos.html" aria-label="Produtos">Produtos
+								<img src="assets/images/produtos_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+						<li>
+							<a href="definicoes.html" aria-label="Definições">Definições
+								<img src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24">
+							</a>
+						</li>
+					</ul><!-- ./menu__lateral-->
+					<div class="conteudo__principal">
+						<h2 class="title">Animais
+							<img src="assets/images/pets_selecionado.png" alt="Animais" width="24" height="24">
+						</h2>
+						<div class="container container__principal">
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item" role="presentation">
+									<button class="nav-link active" id="listagem-tab" data-toggle="tab" data-target="#listagem" type="button" role="tab" aria-controls="listagem" aria-selected="true">Listagem</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="formulario-tab" data-toggle="tab" data-target="#formulario" type="button" role="tab" aria-controls="formulario" aria-selected="false">Formulario</button>
+								</li>
+							</ul>
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="listagem" role="tabpanel" aria-labelledby="listagem-tab">
+									<div class="container container__listagem">
+										<div class="row">
+											<div class="col-lg-9">
+												<div class="buscar__listagem">
+													<input type="text" id="buscar" name="buscar">
+													<button class="btn btn__pesquisar" aria-label="Pesquisar">Pesquisar</button>
+												</div><!-- ./buscar__listagem-->
+												<table class="segura__listagem">
+													<thead>
+														<tr>
+															<th>Código</th>
+															<th>Nome</th>
+															<th>Proprietário</th>
+															<th>Raça</th>
+															<th>Cor</th>
+															<th>Pelagem</th>
+															<th>Tamanho</th>
+															<th>Observações</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="linha">
+															<td>00000</td>
+															<td>Rex</td>
+															<td>João Paulo</td>
+															<td>Pinscher</td>
+															<td>Amarelo</td>
+															<td>Curto</td>
+															<td>Pequeno porte</td>
+															<td>Morde, cuidado!</td>
+														</tr>
+														<tr class="linha">
+															<td>00000</td>
+															<td>Rex</td>
+															<td>João Paulo</td>
+															<td>Pinscher</td>
+															<td>Amarelo</td>
+															<td>Curto</td>
+															<td>Pequeno porte</td>
+															<td>Morde, cuidado!</td>
+														</tr>
+													</tbody>
+												</table><!-- ./segura__listagem-->
+											</div><!-- ./col-->
+											<div class="col-lg-3 segura__btns">
+												<button class="btn btn__acoes" aria-label="Editar">Editar</button>
+												<button class="btn btn__acoes" aria-label="Excluir">Excluir</button>
+											</div><!-- ./col-->
+										</div><!-- ./row-->
+									</div><!-- ./container-->
+								</div>
+								<div class="tab-pane fade" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
+									<form class="form__cadastro">
+										<div class="group">
+											<label for="codigo">Código</label>
+											<input type="text" id="codigo" name="codigo">
+										</div>
+										<div class="group">
+											<label for="nome">Nome</label>
+											<input type="text" id="nome" name="nome">
+										</div>
+										<div class="group">
+											<label for="proprietario">Proprietário</label>
+											<input type="text" id="proprietario" name="proprietario">
+										</div>
+										<div class="group__form">
+											<div class="group">
+												<label for="raca">Raça</label>
+												<input type="text" id="raca" name="raca">
+											</div><!-- ./group-->
+											<div class="group">
+												<label for="cor">Cor</label>
+												<input type="text" id="cor" name="cor">
+											</div><!-- ./group-->
+											<div class="group">
+												<label for="pelagem">Pelagem</label>
+												<input type="text" id="pelagem" name="pelagem">
+											</div><!-- ./group-->
+											<div class="group">
+												<label for="tamanho">Tamanho</label>
+												<input type="text" id="tamanho" name="tamanho">
+											</div><!-- ./group-->
+										</div><!-- ./group__form-->
+										<div class="group">
+											<label for="observacoes">Observações</label>
+											<textarea name="observacoes" id="observacoes"></textarea>
+										</div>
+										<div class="box__btns">
+											<button class="btn btn__form" type="submit" aria-label="Salvar">Salvar</button>
+										</div><!-- ./box__btns-->
+									</form><!-- ./form__cadastro-->
+								</div>
+							</div>
+						</div><!-- ./container-->
+					</div><!-- ./conteudo__principal-->
+				</section><!-- ./principal-->
+			</main><!--/main.wrapper-->
+		</template><!--<a href="https://wa.me/55<?php echo $whatsapp ?>?text=Oi,%20Vim%20Pelo%20Site" class="btnwhats" target="_blank"><img src="assets/images/whatsapp.png"/></a>--><!--Ao clicar em "Aceitar e Fechar", é emitido o evento 'termos.cookies' que pode ser escutado da seguinte forma:
+<script>
+	window.$on('termos.cookies', function(event) {
+		console.log(event);
+	})
+</script>
+
+Observação:
+O termo reseta as 00h e 1 min, caso precise resetar agora, use o seguinte código no console do navegador:
+
+<script>
+	localStorage.clear();
+</script>--><!--  msg-cookies Utilizamos cookies para personalizar anúncios e melhorar a sua experiência no site. Ao continuar navegando, você concorda com a nossa #[a(href="politica-de-privacidade.html") Política de Privacidade]-->
+	</div><!--/#app--><!--Foi adicionada uma classe para auxiliar na validação de CPF, CNPJ e E-mail no js do workflow. Para usá-la(o) faça da seguinte forma:
+
+<script>
+// Instanciando a classe
+// O métodos SEMPRE retornam um booleano
+const Validador = new Validator();
+
+// Testando os valores
+let emailValido = Validador.email('adfadf');
+let cpfValido = Validador.email('000.000.000-00');
+let cnValido = Validador.email('00.000.000/0000-00');
+</script>
+-->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/scripts.min.js"></script>
+</body>
+
+</html>

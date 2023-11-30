@@ -1,0 +1,152 @@
+extend common/template.pug
+
+block title
+	-var title = 'Acomodare';
+//- block title
+
+block theme
+	-var $theme = '#1E1E1E';
+//- block theme
+
+block conteudo
+
+	section.principal
+		ul.menu__lateral
+			li
+				a(href="index.html" aria-label="Home") Home
+					img(src="assets/images/home_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-animais.html" aria-label="Animais") Animais
+					img(src="assets/images/pets_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="agenda.html" aria-label="Agenda") Agenda
+					img(src="assets/images/agenda_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="caixa.html" aria-label="Caixa") Caixa
+					img(src="assets/images/caixa_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-pessoas.html" aria-label="Pessoas") Pessoas
+					img(src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-produtos.html" aria-label="Produtos") Produtos
+					img(src="assets/images/produtos_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="definicoes.html" aria-label="Definições") Definições
+					img(src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24")
+		// ./menu__lateral
+
+		.conteudo__principal
+			h2.title Animais
+				img(src="assets/images/pets_selecionado.png" alt="Animais" width="24" height="24")
+
+			.container.container__principal
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="listagem-tab" data-toggle="tab" data-target="#listagem" type="button" role="tab" aria-controls="listagem" aria-selected="true">Listagem</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="formulario-tab" data-toggle="tab" data-target="#formulario" type="button" role="tab" aria-controls="formulario" aria-selected="false">Formulario</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="listagem" role="tabpanel" aria-labelledby="listagem-tab">
+						.container.container__listagem
+							.row
+								.col-lg-9
+									.buscar__listagem
+										input(type="text" id="buscar" name="buscar")
+										button(aria-label="Pesquisar").btn.btn__pesquisar Pesquisar
+									// ./buscar__listagem
+
+									table.segura__listagem
+										thead
+											tr
+												th Código
+												th Nome
+												th Proprietário
+												th Raça
+												th Cor
+												th Pelagem
+												th Tamanho
+												th Observações
+
+										tbody
+											tr.linha
+												td 00000
+												td Rex
+												td João Paulo
+												td Pinscher
+												td Amarelo
+												td Curto
+												td Pequeno porte
+												td Morde, cuidado!
+
+											tr.linha
+												td 00000
+												td Rex
+												td João Paulo
+												td Pinscher
+												td Amarelo
+												td Curto
+												td Pequeno porte
+												td Morde, cuidado!
+									// ./segura__listagem
+								// ./col
+
+								.col-lg-3.segura__btns
+									button(aria-label="Editar").btn.btn__acoes Editar
+									button(aria-label="Excluir").btn.btn__acoes Excluir
+								// ./col
+							// ./row
+						// ./container
+					</div>
+					<div class="tab-pane fade" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
+						form.form__cadastro
+
+							.group
+								label(for="codigo") Código
+								input(type="text" id="codigo" name="codigo")
+
+							.group
+								label(for="nome") Nome
+								input(type="text" id="nome" name="nome")
+
+							.group
+								label(for="proprietario") Proprietário
+								input(type="text" id="proprietario" name="proprietario")
+
+							.group__form
+								.group
+									label(for="raca") Raça
+									input(type="text" id="raca" name="raca")
+								// ./group
+
+								.group
+									label(for="cor") Cor
+									input(type="text" id="cor" name="cor")
+								// ./group
+
+								.group
+									label(for="pelagem") Pelagem
+									input(type="text" id="pelagem" name="pelagem")
+								// ./group
+
+								.group
+									label(for="tamanho") Tamanho
+									input(type="text" id="tamanho" name="tamanho")
+								// ./group
+							// ./group__form
+
+							.group
+								label(for="observacoes") Observações
+								textarea(name="observacoes" id="observacoes")
+
+							.box__btns
+								button(type="submit" aria-label="Salvar").btn.btn__form Salvar
+							// ./box__btns
+						// ./form__cadastro
+					</div>
+				</div>
+			// ./container
+		// ./conteudo__principal
+	// ./principal

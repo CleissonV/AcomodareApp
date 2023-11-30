@@ -1,0 +1,43 @@
+extend common/template.pug
+
+block title
+	-var title = 'Acomodare';
+//- block title
+
+block theme
+	-var $theme = '#1E1E1E';
+//- block theme
+
+block conteudo
+
+
+	section.principal
+		ul.menu__lateral
+			li
+				a(href="index.html" aria-label="Home") Home
+					img(src="assets/images/home_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-animais.html" aria-label="Animais") Animais
+					img(src="assets/images/pets_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="agenda.html" aria-label="Agenda") Agenda
+					img(src="assets/images/agenda_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="caixa.html" aria-label="Caixa") Caixa
+					img(src="assets/images/caixa_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-pessoas.html" aria-label="Pessoas") Pessoas
+					img(src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-produtos.html" aria-label="Produtos") Produtos
+					img(src="assets/images/produtos_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="definicoes.html" aria-label="Definições") Definições
+					img(src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24")
+		// ./menu__lateral
+
+		.conteudo__principal
+
+		// ./conteudo__principal
+	// ./principal
+

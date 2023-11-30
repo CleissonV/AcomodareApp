@@ -1,0 +1,225 @@
+main{
+  background-color: #f0f8ff;
+}
+
+.menu__lateral{
+  background-color: #fff !important;
+}
+
+.nav-tabs .nav-link{
+  pointer-events: none;
+}
+
+.linha{
+  cursor: unset !important;
+}
+
+.linha.active{
+  background-color: #fff !important;
+}
+
+.adicionar-linha{
+  margin-top: 30px;
+  width: 125px;
+  height: 35px;
+  background-color: #2781e2;
+  color: #fff;
+  transition: background .4s linear;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  box-shadow: unset;
+}
+
+.adicionar-linha:hover{
+  background-color: #1a4e86;
+  color: #fff;
+}
+
+td .btn__acoes{
+  width: 90px;
+  height: 35px;
+  background-color: #2781e2;
+  color: #fff;
+  transition: background .4s linear;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: unset;
+  justify-content: center;
+}
+
+
+
+td .btn__acoes:hover{
+  background-color: #1a4e86;
+  color: #fff;
+}
+
+td .btn__acoes:first-child{
+  margin-right: 10px;
+}
+
+
+
+#calendar {
+  margin-bottom: 20px;
+}
+
+.form__agendamento {
+  display: flex;
+  flex-direction: column;
+}
+
+
+input, textarea {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.btn__agendar {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.segura_topo__home{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+
+.btn__logout{
+  width: 90px;
+  height: 35px;
+  background-color: #2781e2;
+  color: #fff;
+  transition: background .4s linear;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: unset;
+  justify-content: center;
+}
+
+.btn__logout:hover{
+  background-color: #1a4e86;
+  color: #fff;
+}
+
+.titulo__bem__vindo{
+  color: #00519e;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .page__login .segura__conteudo{
+    width: 100% !important;
+    padding-top: 150px !important;
+  }
+}
+
+.container__principal__home .subtitulo{
+  color: #00519e;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.segura__agendamentos{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 600px){
+  .segura__agendamentos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 415px){
+  .segura__agendamentos{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.card__agendamento{
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  font-family: 400;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card__agendamento .btn__acoes{
+  width: 90px;
+  height: 35px;
+  background-color: #2781e2;
+  color: #fff;
+  transition: background .4s linear;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: unset;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.principal .conteudo__principal .container__listagem .buscar__listagem input{
+  margin-bottom: 0 !important;
+}
+
+.td_segura .btn__acoes {
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td .btn__acoes:first-child{
+  margin-right: auto !important;
+}
+
+@media (max-width:992px){
+  .principal .conteudo__principal .container__listagem th, .principal .conteudo__principal .container__listagem td{
+    display: table-cell !important;
+  }
+
+  
+}
+
+select{
+  width: 100%;
+  height: 35px;
+  outline: none;
+}
+
+.principal .conteudo__principal .form__cadastro .box__btns .btn__form{
+  width: 125px !important;
+}

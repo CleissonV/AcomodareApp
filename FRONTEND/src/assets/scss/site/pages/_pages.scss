@@ -1,0 +1,20 @@
+@import "_home.scss";
+@import "_login";
+
+.btnwhats{
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 9999;
+}.btnwhats img{
+transition: all .2s linear;
+}.btnwhats:hover img{
+filter: brightness(1.2);
+}
+@media (max-width: 900px) {
+	.btnwhats{
+		right: auto;
+		left: 50%;
+		transform: translate(-50%,0);
+	}
+}

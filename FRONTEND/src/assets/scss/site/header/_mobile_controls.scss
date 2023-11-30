@@ -1,0 +1,36 @@
+/* Ocultando quando desktop */
+@include media-breakpoint-up(lg){
+    .mobile__controls{
+        display: none;
+    }
+}
+
+/* Exibe quando mobile/tablet */
+@include media-breakpoint-down(md){
+    .mobile__controls{
+        display: flex;
+    }
+}
+
+/* Definindo os estilos padrões do .mobile__controls */
+.mobile__controls{
+    justify-content: space-between;
+	padding: 10px;
+
+	.logo{
+		.titulo__logo{
+			color: #fff;
+			font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 30px;
+			font-weight: 700;
+		}
+	}
+
+	.btn{
+		border-radius: 0;
+		color:  #fff;
+		font-weight: bold;
+		box-shadow: none;
+		margin-left: auto;
+	}
+}

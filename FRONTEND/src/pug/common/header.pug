@@ -1,0 +1,58 @@
+block active
+	-var active = 'home'
+//- block active
+
+-
+	var menuAtivo = function(string) {
+		if(string === active) {
+			return 'active'
+		}else {
+			return '';
+		}
+	}
+
+header.topo
+	.mobile__controls
+		.logo
+			h1.titulo__logo Acomodare
+		// ./logo
+
+		button(type="button" aria-expanded="false" aria-label="Mostrar menu").btn#menuToggler
+			i.fas.fa-bars
+		// ./menuToggler
+
+
+	// ./mobile__controls
+
+	nav.main__topo
+		.logo
+			h1.titulo__logo Acomodare
+		// ./logo
+
+		ul.menu
+			li
+				a(href="index.html" aria-label="Home") Home
+					img(src="assets/images/home_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-animais.html" aria-label="Animais") Animais
+					img(src="assets/images/pets_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="agenda.html" aria-label="Agenda") Agenda
+					img(src="assets/images/agenda_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="caixa.html" aria-label="Caixa") Caixa
+					img(src="assets/images/caixa_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-pessoas.html" aria-label="Pessoas") Pessoas
+					img(src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-produtos.html" aria-label="Produtos") Produtos
+					img(src="assets/images/produtos_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="definicoes.html" aria-label="Definições") Definições
+					img(src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24")
+		// ./menu
+	// ./main__topo
+	.backdrop
+
+// ./topo

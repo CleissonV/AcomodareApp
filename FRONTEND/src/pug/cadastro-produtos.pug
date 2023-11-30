@@ -1,0 +1,127 @@
+extend common/template.pug
+
+block title
+	-var title = 'Acomodare';
+//- block title
+
+block theme
+	-var $theme = '#1E1E1E';
+//- block theme
+
+block conteudo
+
+	section.principal
+		ul.menu__lateral
+			li
+				a(href="index.html" aria-label="Home") Home
+					img(src="assets/images/home_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-animais.html" aria-label="Animais") Animais
+					img(src="assets/images/pets_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="agenda.html" aria-label="Agenda") Agenda
+					img(src="assets/images/agenda_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="caixa.html" aria-label="Caixa") Caixa
+					img(src="assets/images/caixa_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-pessoas.html" aria-label="Pessoas") Pessoas
+					img(src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-produtos.html" aria-label="Produtos") Produtos
+					img(src="assets/images/produtos_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="definicoes.html" aria-label="Definições") Definições
+					img(src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24")
+		// ./menu__lateral
+
+		.conteudo__principal
+			h2.title Produtos
+				img(src="assets/images/produtos_selecionado.png" alt="Animais" width="24" height="24")
+
+			.container.container__principal
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="listagem-tab" data-toggle="tab" data-target="#listagem" type="button" role="tab" aria-controls="listagem" aria-selected="true">Listagem</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="formulario-tab" data-toggle="tab" data-target="#formulario" type="button" role="tab" aria-controls="formulario" aria-selected="false">Formulario</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="listagem" role="tabpanel" aria-labelledby="listagem-tab">
+						.container.container__listagem
+							.row
+								.col-lg-9
+									.buscar__listagem
+										input(type="text" id="buscar" name="buscar")
+										button(aria-label="Pesquisar").btn.btn__pesquisar Pesquisar
+									// ./buscar__listagem
+
+									table.segura__listagem
+										thead
+											tr
+												th Código
+												th Descrição
+												th Código EAN
+												th Tipo UN
+												th Quantidade
+												th Preço
+
+										tbody
+											tr.linha
+												td 00002
+												td Detergente Liquido
+												td 7897510301009
+												td 1X500ML
+												td 1
+												td 14,90
+									// ./segura__listagem
+								// ./col
+
+								.col-lg-3.segura__btns
+									button(aria-label="Editar").btn.btn__acoes Editar
+									button(aria-label="Excluir").btn.btn__acoes Excluir
+								// ./col
+							// ./row
+						// ./container
+					</div>
+					<div class="tab-pane fade" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
+						form.form__cadastro
+
+							.group
+								label(for="codigo") Código
+								input(type="text" id="codigo" name="codigo")
+
+							.group
+								label(for="descricao") Descricao
+								input(type="text" id="descricao" name="descricao")
+							.group__form
+								.group
+									label(for="codigo_ean") Código EAN
+									input(type="text" id="codigo_ean" name="codigo_ean")
+								.group
+									label(for="tipo_un") Tipo UN
+									input(type="text" id="tipo_un" name="tipo_un")
+								// ./group
+
+								.group
+									label(for="quantidade") Quantidade
+									input(type="text" id="quantidade" name="quantidade")
+								// ./group
+
+								.group
+									label(for="preco") Preço
+									input(type="text" id="preco" name="preco")
+								// ./group
+							// ./group__form
+
+							.box__btns
+								button(type="submit" aria-label="Salvar").btn.btn__form Salvar
+							// ./box__btns
+						// ./form__cadastro
+					</div>
+				</div>
+			// ./container
+		// ./conteudo__principal
+	// ./principal

@@ -1,0 +1,62 @@
+{
+	"name": "workflow",
+	"version": "1.0.0",
+	"description": "",
+	"main": "gulpfile.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"clear": "rm -rf .git && echo 'O diretório .git foi deletado com sucesso!'",
+		"start": "rm -rf dist && gulp start ",
+		"dev": "gulp dev",
+		"build": "rm -rf .cache && gulp build && gulp js:build && gulp sass"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.22.1",
+		"@babel/plugin-proposal-private-methods": "^7.18.6",
+		"@babel/preset-env": "^7.7.6",
+		"@vue/component-compiler-utils": "^3.2.0",
+		"browser-sync": "^2.26.7",
+		"compression": "^1.7.4",
+		"fs": "0.0.1-security",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-babel": "^8.0.0",
+		"gulp-beautify": "^3.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-dart-sass": "1.0.2",
+		"gulp-imagemin": "^7.1.0",
+		"gulp-images-resizer": "0.0.7",
+		"gulp-parcel": "^0.3.6",
+		"gulp-postcss": "^8.0.0",
+		"gulp-pug": "^4.0.1",
+		"gulp-rename": "^1.4.0",
+		"gulp-sourcemaps": "^2.6.5",
+		"gulp-svgstore": "^7.0.1",
+		"gulp-uglify": "^3.0.2",
+		"gulp-webp": "^4.0.1",
+		"gulp.spritesmith": "^6.11.0",
+		"parcel-bundler": "1.12.3",
+		"sass": "^1.32.0",
+		"vue-hot-reload-api": "^2.3.4",
+		"vue-template-compiler": "^2.6.12"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.11.2",
+		"animate.css": "^3.7.2",
+		"bootstrap": "^4.4.1",
+		"gulp-dart-scss": "1.1.0",
+		"imagesloaded": "^4.1.4",
+		"jquery": "^3.4.1",
+		"lightbox2": "^2.11.1",
+		"owl.carousel2": "^2.2.1",
+		"popper.js": "^1.16.0",
+		"slick-carousel": "^1.8.1",
+		"vue": "^2.6.12"
+	},
+	"alias": {
+		"vue": "./node_modules/vue/dist/vue.common.js",
+		"event-bus": "./src/assets/js/vue/utils/EventBus.js"
+	}
+}

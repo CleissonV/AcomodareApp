@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Redirecionamento para /home se a URL for apenas /
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^(.*)$ home [L]
+
+# Redirecionamento para /home se a URL contiver /acomodare/ sem /home após
+RewriteRule ^acomodare/(?!home) acomodare/home [L,R=301]
+
+# Restante das regras para URLs amigáveis
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ src/pages/$1.php [QSA,L]

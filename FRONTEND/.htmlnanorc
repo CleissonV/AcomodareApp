@@ -1,0 +1,14 @@
+{
+	"minifySvg": false,
+	"minifyCss": {
+        "preset": ['default', {
+            "discardComments": {
+                "removeAll": true,
+            },
+        }]
+    },
+	"minifyJs": {
+        "output": { quote_style: 1 },
+    }
+
+}

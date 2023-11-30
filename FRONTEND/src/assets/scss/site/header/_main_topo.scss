@@ -1,0 +1,160 @@
+@include media-breakpoint-up(lg){
+	.main__topo{
+		width: 100%;
+		padding: 10px 25px 10px 50px;
+		.menu{
+			display: none;
+		}
+
+		.titulo__logo{
+			color: #fff;
+			font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 30px;
+			font-weight: 700;
+		}
+	}
+}
+
+/*MOBILE*/
+@include media-breakpoint-down(md){
+    .main__topo{
+        position: fixed;
+        left: 0;
+        top: 0;
+		padding-top: 20px;
+        width: 250px;
+        height: 100%;
+		background-color: rgb(13,66,117);
+        z-index: 999;
+        overflow: auto;
+        transform: translateX(-100%);
+
+
+
+		.logo{
+			display: flex;
+			justify-content: center;
+			.titulo__logo{
+				color: #fff;
+				font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 30px;
+				font-weight: 800;
+			}
+		}
+
+		.menu{
+			list-style: none;
+			padding-left: 0;
+			margin-bottom: 0;
+			margin-top: 30px;
+
+			li{
+				display: flex;
+				justify-content: flex-start;
+
+				&:last-child{
+					margin-top: 80px;
+				}
+			}
+
+			a{
+				display: flex;
+				align-items: center;
+				flex-direction: row-reverse;
+				padding: 10px 20px;
+				color: #fff;
+				font-size: 18px;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				transition: all .4s linear;
+				position: relative;
+				background: transparent;
+				text-decoration: none;
+
+				img{
+					margin-right: 10px;
+				}
+
+				&:hover{
+					color: #fff;
+				}
+			}
+
+
+		}
+
+    }
+
+
+    .main__topo.main__topo--shown{
+        animation: showMenu .4s linear forwards;
+    }
+
+    .main__topo.main__topo--hide{
+        animation: hideMenu .4s linear forwards;
+    }
+
+    .backdrop{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.8);
+        backdrop-filter: blur(4px);
+        display: none;
+    }
+
+    .backdrop.main__topo--shown{
+        display: block;
+        animation: showBackdrop .4s linear forwards;
+    }
+
+    .backdrop.main__topo--hide{
+        display: block;
+        animation: hideBackdrop .4s linear forwards;
+    }
+}
+
+@keyframes showBackdrop {
+    from {
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes hideBackdrop {
+    to {
+        opacity: 0;
+    }
+
+    from{
+        opacity: 1;
+    }
+}
+
+@keyframes showMenu {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes hideMenu {
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    from{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

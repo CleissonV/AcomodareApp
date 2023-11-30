@@ -1,0 +1,9 @@
+.btn-pill{
+	border-radius: 2rem;
+}
+
+.btn-voltar{
+	padding: .5rem 2rem;
+	min-width: 190px;
+	@include button-variant($danger, $danger);
+}

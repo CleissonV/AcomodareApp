@@ -1,0 +1,51 @@
+// bg-position(x,y) width height
+$icons: (
+	'html': 0px 0px 32px 32px,
+);
+
+@if $nativeCssIconVarialables {
+	:root{
+		@each $icon,$value in $icons {
+			/*icon-#{$icon}*/
+			--icon-#{$icon}-width: #{nth($value, 3)};
+			--icon-#{$icon}-height: #{nth($value, 4)};
+			--icon-#{$icon}-bg: #{nth($value, 1)} #{nth($value, 2)};
+		}
+	}
+}
+
+.icon{
+	background-image: url('../images/sprites.png');
+	background-repeat:no-repeat;
+	background-size: 32px 32px;
+
+	display: inline-block;
+	vertical-align: middle;
+
+}
+
+.icon__mask{
+	mask-image: url('../images/sprites.png');
+	mask-repeat:no-repeat;
+	mask-size: 32px 32px;
+
+	display: inline-block;
+	vertical-align: middle;
+	background-color: currentColor;
+}
+
+@each $icon,$value in $icons {
+	.#{$icon} {
+		width: nth($value,3);
+		height: nth($value,4);
+		$sprite-position: #{nth($value,1)} #{nth($value,2)};
+
+		&.icon{
+			background-position: $sprite-position;
+		}
+
+		&.icon__mask{
+			mask-position: $sprite-position;
+		}
+	}
+}

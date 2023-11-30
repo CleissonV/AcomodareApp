@@ -1,0 +1,32 @@
+extend common/template.pug
+
+block title
+	-var title = 'Acomodare';
+//- block title
+
+block theme
+	-var $theme = '#1E1E1E';
+//- block theme
+
+block conteudo
+
+	.page__login
+		.box__img
+
+		.segura__conteudo
+			h2.title Seja bem vindo
+			h3.subtitle Faça seu login para entrar no sistema
+
+			form.form__login
+				.group
+					label(for="usuario") Usuário
+					input(type="text" id="usuario" name="usuario")
+
+				.group
+					label(for="senha") Senha
+					input(type="password" id="senha" name="senha")
+
+				button(type="submit" aria-label="Acessar").btn.btn__acessar Acessar
+			// ./form__login
+		// ./segura__conteudo
+	// ./page__login

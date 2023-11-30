@@ -1,0 +1,157 @@
+extend common/template.pug
+
+block title
+	-var title = 'Acomodare';
+//- block title
+
+block theme
+	-var $theme = '#1E1E1E';
+//- block theme
+
+block conteudo
+
+	section.principal
+		ul.menu__lateral
+			li
+				a(href="index.html" aria-label="Home") Home
+					img(src="assets/images/home_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-animais.html" aria-label="Animais") Animais
+					img(src="assets/images/pets_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="agenda.html" aria-label="Agenda") Agenda
+					img(src="assets/images/agenda_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="caixa.html" aria-label="Caixa") Caixa
+					img(src="assets/images/caixa_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-pessoas.html" aria-label="Pessoas") Pessoas
+					img(src="assets/images/pessoas_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="cadastro-produtos.html" aria-label="Produtos") Produtos
+					img(src="assets/images/produtos_normal.png" alt="icone" width="24" height="24")
+			li
+				a(href="definicoes.html" aria-label="Definições") Definições
+					img(src="assets/images/definicoes_normal.png" alt="icone" width="24" height="24")
+		// ./menu__lateral
+
+		.conteudo__principal
+			h2.title Pessoas
+				img(src="assets/images/pessoas_selecionado.png" alt="Animais" width="24" height="24")
+
+			.container.container__principal
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="listagem-tab" data-toggle="tab" data-target="#listagem" type="button" role="tab" aria-controls="listagem" aria-selected="true">Listagem</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="formulario-tab" data-toggle="tab" data-target="#formulario" type="button" role="tab" aria-controls="formulario" aria-selected="false">Formulario</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="listagem" role="tabpanel" aria-labelledby="listagem-tab">
+						.container.container__listagem
+							.row
+								.col-lg-9
+									.buscar__listagem
+										input(type="text" id="buscar" name="buscar")
+										button(aria-label="Pesquisar").btn.btn__pesquisar Pesquisar
+									// ./buscar__listagem
+
+									table.segura__listagem
+										thead
+											tr
+												th Código
+												th Nome
+												th CPF
+												th Gênero
+												th Data Nascimento
+												th Telefone
+												th Endereço
+												th Bairro
+												th Cidade
+												th CEP
+												th UF
+
+										tbody
+											tr.linha
+												td 00001
+												td João Paulo
+												td 48900087645
+												td Masculino
+												td 23/10/2001
+												td (14)99872-0908
+												td José Joaquim Salaro
+												td Jardim São João
+												td Santa Cruz do Rio Pardo
+												td 18915-766
+												td SP
+									// ./segura__listagem
+								// ./col
+
+								.col-lg-3.segura__btns
+									button(aria-label="Editar").btn.btn__acoes Editar
+									button(aria-label="Excluir").btn.btn__acoes Excluir
+								// ./col
+							// ./row
+						// ./container
+					</div>
+					<div class="tab-pane fade" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
+						form.form__cadastro
+
+							.group
+								label(for="codigo") Código
+								input(type="text" id="codigo" name="codigo")
+
+							.group
+								label(for="nome") Nome
+								input(type="text" id="nome" name="nome")
+							.group__form
+								.group
+									label(for="cpf") CPF
+									input(type="text" id="cpf" name="cpf")
+								.group
+									label(for="genero") Gênero
+									input(type="text" id="genero" name="genero")
+								// ./group
+
+								.group
+									label(for="data_nascimento") Data Nascimento
+									input(type="date" id="data_nascimento" name="data_nascimento")
+								// ./group
+
+								.group
+									label(for="telefone") Telefone
+									input(type="text" id="telefone" name="telefone")
+								// ./group
+							// ./group__form
+
+							.group
+								label(for="endereco") Endereço
+								input(type="text" id="endereco" name="endereco")
+
+							.group
+								label(for="bairro") Bairro
+								input(type="text" id="bairro" name="bairro")
+
+							.group
+								label(for="cidade") Cidade
+								input(type="text" id="cidade" name="cidade")
+
+							.group
+								label(for="cep") CEP
+								input(type="text" id="cep" name="cep")
+
+							.group
+								label(for="uf") UF
+								input(type="text" id="uf" name="uf")
+
+							.box__btns
+								button(type="submit" aria-label="Salvar").btn.btn__form Salvar
+							// ./box__btns
+						// ./form__cadastro
+					</div>
+				</div>
+			// ./container
+		// ./conteudo__principal
+	// ./principal
