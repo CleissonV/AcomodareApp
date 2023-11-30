@@ -170,6 +170,42 @@ include 'header.php';
                 <h2 style="text-align:center;">Tudo certo! Não há produtos com quantidade baixa no estoque</h1>
               <?php endif; ?>
             </div>
+
+            <?php
+              $servername = "localhost";
+              $username = "brcriacaodesites_acomodare";
+              $password = "9DPib3cGUji9nk";
+              $dbname = "brcriacaodesites_acomodare";
+              
+              $conn = new mysqli($servername, $username, $password, $dbname);
+              
+              if ($conn->connect_error) {
+                  die("Erro na conexão: " . $conn->connect_error);
+              }
+              // Consulta SQL para obter a lista de quartos
+              $result = $conn->query("SELECT * FROM quartos WHERE situacao = 0");
+              
+              // Array para armazenar os quartos
+              $quartos = [];
+
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $quartos[] = $row;
+                }
+              }
+            ?>
+            <h3 style="margin-top:40px;" class="subtitulo">Quartos disponiveis:</h3>
+            <div class="segura__agendamentos">
+              <?php foreach ($quartos as $quarto) : ?>
+                <div class="card__agendamento">
+                  <div class="quarto">Quarto: <?= $quarto['numero_quarto']; ?></div>
+                  <a href="agenda" class="btn btn__acoes" aria-label="Reservar">Reservar</a>
+                </div>
+              <?php endforeach; ?>
+              <?php if (empty($quartos)) : ?>
+                <h2 style="text-align:center;"> Não há quartos disponiveis no momento</h1>
+              <?php endif; ?>
+            </div>
           </div>
         </div><!-- ./conteudo__principal-->
       </section><!-- ./principal-->

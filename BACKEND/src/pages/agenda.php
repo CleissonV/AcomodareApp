@@ -293,7 +293,7 @@ include 'header.php';
                   <label for="quarto">Quarto</label>
                   <?php
                     // Consulta SQL para obter todas as quartos
-                    $sql = "SELECT id, numero_quarto FROM quartos";
+                    $sql = "SELECT id, numero_quarto FROM quartos WHERE situacao = 0";
                     $result = $conn->query($sql);
 
                     // Array para armazenar as quartos
